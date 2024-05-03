@@ -419,6 +419,18 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1656151179899511546, guid: 607dffd51ca484748a9b8ffe3703d8ef, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1656151179899511546, guid: 607dffd51ca484748a9b8ffe3703d8ef, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1656151179899511546, guid: 607dffd51ca484748a9b8ffe3703d8ef, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1656151179899511546, guid: 607dffd51ca484748a9b8ffe3703d8ef, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -462,6 +474,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: amamiyakokoro
       objectReference: {fileID: 0}
+    - target: {fileID: 4619558992807262336, guid: 607dffd51ca484748a9b8ffe3703d8ef, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 59885a435b9d7be49a310d5a10e6adeb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 607dffd51ca484748a9b8ffe3703d8ef, type: 3}
 --- !u!1 &1806131730
