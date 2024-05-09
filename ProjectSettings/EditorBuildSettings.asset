@@ -5,12 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Myapp/Scenes/ARBuildScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Myapp/Scenes/MeshScene.unity
-    guid: 5d5608b46abca8845b0d1cebfd60684b
   m_configObjects:
     Niantic.Lightship.AR.LightshipSettings: {fileID: 11400000, guid: 426ed69fec6530d4e8d2d71b269a1af5, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 257ac1e1f4065744ea7df60a8dacd89a, type: 2}
