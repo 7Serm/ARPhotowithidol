@@ -473,13 +473,14 @@ GameObject:
   m_Component:
   - component: {fileID: 879495105}
   - component: {fileID: 879495104}
+  - component: {fileID: 879495106}
   m_Layer: 0
   m_Name: Launcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &879495104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,7 +488,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 879495103}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce48d8ac721152043804cfa1dd6a524d, type: 3}
   m_Name: 
@@ -508,6 +509,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &879495106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879495103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d57d4b9bcd1ca545b90fdd21f0c632a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameObject: {fileID: 8082099831432813787, guid: b638c341f92de2e4189f35481d3af785, type: 3}
 --- !u!1001 &1014470504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -599,7 +613,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1044933590}
   - component: {fileID: 1044933592}
-  - component: {fileID: 1044933591}
   - component: {fileID: 1044933594}
   - component: {fileID: 1044933593}
   m_Layer: 0
@@ -624,30 +637,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1678222560}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1044933591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044933589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86b456713bd4d4c31b3cb04c67d82381, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _targetFrameRate: 10
-  _maximumIntegrationDistance: 5
-  _voxelSize: 0.025
-  _enableDistanceBasedVolumetricCleanup: 1
-  _meshBlockSize: 1.4
-  _meshCullingDistance: 0
-  _enableMeshDecimation: 1
-  _isMeshFilteringEnabled: 0
-  _isFilteringAllowListEnabled: 0
-  _allowList: []
-  _isFilteringBlockListEnabled: 0
-  _blockList: []
 --- !u!114 &1044933592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,11 +668,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b456713bd4d4c31b3cb04c67d82381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetFrameRate: 10
-  _maximumIntegrationDistance: 5
-  _voxelSize: 0.025
+  _targetFrameRate: 5
+  _maximumIntegrationDistance: 15
+  _voxelSize: 0.015
   _enableDistanceBasedVolumetricCleanup: 1
-  _meshBlockSize: 1.4
+  _meshBlockSize: NaN
   _meshCullingDistance: 0
   _enableMeshDecimation: 1
   _isMeshFilteringEnabled: 1
