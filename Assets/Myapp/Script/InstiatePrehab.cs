@@ -5,6 +5,7 @@ using UnityEngine;
 public class InstiatePrehab : MonoBehaviour
 {
     private RaycastHit _hit;
+    private int _count = 0;
 
     [SerializeField]
     private GameObject _gameObject;
@@ -14,7 +15,7 @@ public class InstiatePrehab : MonoBehaviour
     void Update()
     {
         ///ƒ‚ƒfƒ‹‚Ì¶¬
-        if(Input.touchCount > 0)
+        if(Input.touchCount > 0 && _count == 0)
         {
             Touch touch = Input.touches[0];
             if(touch.phase == TouchPhase.Began )
@@ -23,7 +24,9 @@ public class InstiatePrehab : MonoBehaviour
                 if(Physics.Raycast( _ray, out _hit ))
                 {
                     Instantiate(_gameObject,_hit.point,Quaternion.Euler(0,180,0));
+                    _count++;
                 }
+
             }
         }
     }
