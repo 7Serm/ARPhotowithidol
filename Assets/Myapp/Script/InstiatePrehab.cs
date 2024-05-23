@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InstiatePrehab : MonoBehaviour
 {
@@ -8,9 +9,20 @@ public class InstiatePrehab : MonoBehaviour
     private int _count = 0;
 
     [SerializeField]
-    private GameObject _gameObject;
+    private GameObject _modelObject;
+    [SerializeField] GameObject _emptyobjprehab;
+    [SerializeField] GameObject _motherobj;
 
+    public Text textx;
+    public Text texty;
+    public Text textz;
 
+    private GameObject emptyobj;
+
+    public GameObject EmptyObjPrehab
+    {
+        get => emptyobj;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -23,11 +35,22 @@ public class InstiatePrehab : MonoBehaviour
                 var _ray = Camera.main.ScreenPointToRay( touch.position );
                 if(Physics.Raycast( _ray, out _hit ))
                 {
-                    Instantiate(_gameObject,_hit.point,Quaternion.Euler(0,180,0));
+                    Instantiate(_modelObject,_hit.point,Quaternion.Euler(0,180,0));
                     _count++;
+                     emptyobj = Instantiate(_emptyobjprehab, _hit.transform.position, _hit.transform.rotation);
+                    emptyobj.transform.SetParent(Camera.main.transform);
+                   
                 }
 
             }
         }
+
+        if(emptyobj != null)
+        {
+            textx.text = emptyobj.transform.position.x.ToString();
+            texty.text = emptyobj.transform.position.y.ToString();
+            textz.text = emptyobj.transform.position.z.ToString();
+        }
+        
     }
 }

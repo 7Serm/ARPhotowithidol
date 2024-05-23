@@ -1,28 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Launcher : MonoBehaviour
 {
-    public GameObject _prefab;
+    [SerializeField] GameObject _modelprefab;
+    [SerializeField] GameObject _emptyobjprehab;
+    private RaycastHit _hit;
+
+
+
     void Update()
     {
-#if UNITY_EDITOR
-        if (Input.GetMouseButtonDown(0))
-#else
         if (Input.touchCount > 0)
-#endif
         {
-            //カメラの前にスポーンする 
-            var pos = Camera.main.transform.position;
-            var forw = Camera.main.transform.forward;
-            var thing = Instantiate(_prefab, pos + (forw * 0.1f), Quaternion.identity);
-
-            //物理演算が追加されている場合は発射する
-            if (thing.TryGetComponent(out Rigidbody rb))
+            Touch touch = Input.touches[0];
+            if (touch.phase == TouchPhase.Began)
             {
-                rb.AddForce(forw * 200.0f);
+
+                if (touch.phase == TouchPhase.Began)
+
+                {
+
+                    var _ray = Camera.main.ScreenPointToRay(touch.position);
+                    if (Physics.Raycast(_ray, out _hit))
+
+                    {
+
+                        Instantiate(_modelprefab, _hit.transform.position, _hit.transform.rotation);
+                        GameObject emptyobj = Instantiate(_emptyobjprehab, _hit.transform.position, _hit.transform.rotation);
+                        emptyobj.transform.SetParent(Camera.main.transform);
+                        ModelScript modelscp= _modelprefab.GetComponent<ModelScript>();
+                       // modelscp._emptyObject = emptyobj;
+                    }
+                }
             }
+
         }
     }
 }

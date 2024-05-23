@@ -1,41 +1,53 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class ModelScript : MonoBehaviour
 {
+
+    private GameObject _emptyObject; // 空のオブジェクトを参照
+    private float _maxDistance = 0.0f; // モデルが空オブジェクトから離れる最大距離
+    private float _speed = 1f; // モデルが空オブジェクトに向かう速度
+    [SerializeField]
+    InstiatePrehab instiatePrehab;
+
     public float delay = 2.0f; // 待機時間（秒）
-    private float initialZ; // 初期Z座標
+    GameObject gmb;
     void Start()
     {
-        // モデルの初期Z座標を保存
-        initialZ = transform.position.z;
-
-        // 指定した時間待機してからFollowCameraメソッドを呼び出す
-        StartCoroutine(StartFollowingAfterDelay());
+        GameObject gmb = GameObject.Find("Launcher");
+        instiatePrehab = gmb.GetComponent<InstiatePrehab>();
+        _emptyObject = instiatePrehab.EmptyObjPrehab;
+        //↑モデル移動関数で使用
     }
 
-    IEnumerator StartFollowingAfterDelay()
-    {
-        // 指定された待機時間分待機
-        yield return new WaitForSeconds(delay);
 
-        // Updateメソッドを実行してカメラの位置を追従するようにする
-        StartFollowingCamera();
+    void Update()
+    {
+      //  MoveModel();
+
     }
+    
 
-    void StartFollowingCamera()
+
+
+
+　　　//モデル移動関数
+   　//カメラ本体の移動があればモデルも追従するがカメラ回転には合わせて移動しない
+    private void MoveModel()
     {
-        // UpdateメソッドをUpdateCameraPositionメソッドに差し替える
-        this.InvokeRepeating("UpdateCameraPosition", 0.0f, 0.01f); // 0.01秒間隔で呼び出し
-    }
-
-    void UpdateCameraPosition()
-    {
-        // オブジェクトの位置をカメラの位置に追従させ、Z座標は初期値に固定
-        //このコードはデバイスのX座標で移動するのでその場でスマホを回転させても追従しない
-        gameObject.transform.position = new Vector3(Camera.main.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-
-
+        if (instiatePrehab != null)
+        {
+            Debug.Log("hihi" + instiatePrehab.EmptyObjPrehab.transform.position);
+            Debug.Log("hihimodel" + transform.position);
+            // モデルが空オブジェクトから一定距離離れているか確認
+            float distanceX = Mathf.Abs(transform.position.x - _emptyObject.transform.position.x);
+            if (distanceX > _maxDistance)
+            {
+                // モデルを空オブジェクトの位置に向かってX軸方向に移動
+                float step = _speed * Time.deltaTime;
+            float targetX = Mathf.MoveTowards(transform.position.x, _emptyObject.transform.position.x, step);
+            transform.position = new Vector3(targetX, transform.position.y, transform.position.z);
+            }
+        }
     }
 }
