@@ -37,7 +37,7 @@ public class InstiatePrehab : MonoBehaviour
                 {
                     Instantiate(_modelObject,_hit.point,Quaternion.Euler(0,180,0));
                     _count++;
-                     emptyobj = Instantiate(_emptyobjprehab, _hit.transform.position, _hit.transform.rotation);
+                    emptyobj = Instantiate(_emptyobjprehab, _hit.point, Quaternion.Euler(0, 180, 0));
                     emptyobj.transform.SetParent(Camera.main.transform);
                    
                 }
