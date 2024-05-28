@@ -5,8 +5,8 @@ public class ModelScript : MonoBehaviour
 {
 
     private GameObject _emptyObject; // 空のオブジェクトを参照
-    private float _maxDistance = 0.0f; // モデルが空オブジェクトから離れる最大距離
-    private float _speed = 1f; // モデルが空オブジェクトに向かう速度
+    private float _maxDistance = 0.5f; // モデルが空オブジェクトから離れる最大距離
+    private float _speed = 5f; // モデルが空オブジェクトに向かう速度
     private InstiatePrehab instiatePrehab;
     GameObject gmb;
     void Start()
@@ -20,7 +20,7 @@ public class ModelScript : MonoBehaviour
 
     void Update()
     {
-          MoveModel();
+        MoveModel();
 
     }
 
@@ -32,18 +32,23 @@ public class ModelScript : MonoBehaviour
     //カメラ本体の移動があればモデルも追従するがカメラ回転には合わせて移動しない
     private void MoveModel()
     {
-        if (instiatePrehab != null)
+        if (instiatePrehab != null && _emptyObject != null)
         {
-            Debug.Log("hihi" + instiatePrehab.EmptyObjPrehab.transform.position);
-            Debug.Log("hihimodel" + transform.position);
-            // モデルが空オブジェクトから一定距離離れているか確認
-            float distanceX = Mathf.Abs(transform.position.x - _emptyObject.transform.position.x);
-            if (distanceX > _maxDistance)
+            if (instiatePrehab != null && _emptyObject != null)
             {
-                // モデルを空オブジェクトの位置に向かってX軸方向に移動
-                float step = _speed * Time.deltaTime;
-                float targetX = Mathf.MoveTowards(transform.position.x, _emptyObject.transform.position.x, step);
-                transform.position = new Vector3(targetX, transform.position.y, transform.position.z);
+                // X軸とZ軸の距離を計算
+                float distanceX = Mathf.Abs(transform.position.x - _emptyObject.transform.position.x);
+                float distanceZ = Mathf.Abs(transform.position.z - _emptyObject.transform.position.z);
+
+                // X軸またはZ軸の距離が_maxDistanceを超えている場合
+                if (distanceX > _maxDistance || distanceZ > _maxDistance)
+                {
+                    // モデルを空オブジェクトの位置に向かってX軸とZ軸方向に移動
+                    float step = _speed * Time.deltaTime;
+                    float targetX = Mathf.MoveTowards(transform.position.x, _emptyObject.transform.position.x, step);
+                    float targetZ = Mathf.MoveTowards(transform.position.z, _emptyObject.transform.position.z, step);
+                    transform.position = new Vector3(targetX, transform.position.y, targetZ);
+                }
             }
         }
     }
