@@ -1605,8 +1605,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d28c6cc461454a94baa65287fa0642aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _emptyObject: {fileID: 0}
-  Text: {fileID: 0}
-  _findname: emptyGoal
-  delay: 2
-  gmb: {fileID: 0}
