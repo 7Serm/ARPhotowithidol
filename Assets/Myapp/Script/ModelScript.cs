@@ -5,7 +5,7 @@ public class ModelScript : MonoBehaviour
 {
 
     private GameObject _emptyObject; // 空のオブジェクトを参照
-    private float _maxDistance = 0.5f; // モデルが空オブジェクトから離れる最大距離
+    private float _maxDistance = 0f; // モデルが空オブジェクトから離れる最大距離
     private float _speed = 5f; // モデルが空オブジェクトに向かう速度
     private InstiatePrehab instiatePrehab;
 
@@ -24,7 +24,7 @@ public class ModelScript : MonoBehaviour
     void Update()
     {
         MoveModel();
-        ModelLookatCamera();
+      //  ModelLookatCamera();
     }
 
 
@@ -44,11 +44,20 @@ public class ModelScript : MonoBehaviour
             // X軸またはZ軸の距離が_maxDistanceを超えている場合
             if (distanceX > _maxDistance || distanceZ > _maxDistance)
             {
-                // モデルを空オブジェクトの位置に向かってX軸とZ軸方向に移動
+                // モデルを空オブジェクトの最新の位置に向かってX軸とZ軸方向に移動
+                Vector3 targetPosition = new(_emptyObject.transform.position.x, transform.position.y, _emptyObject.transform.position.z);
+                Vector3 direction = targetPosition - transform.position;
+
+                // 回転を設定
+                if (direction != Vector3.zero)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _speed * Time.deltaTime);
+                }
+
+                // 移動を設定
                 float step = _speed * Time.deltaTime;
-                float targetX = Mathf.Lerp(transform.position.x, _emptyObject.transform.position.x, step);
-                float targetZ = Mathf.Lerp(transform.position.z, _emptyObject.transform.position.z, step);
-                transform.position = new Vector3(targetX, transform.position.y, targetZ);
+                transform.position = Vector3.Slerp(transform.position, targetPosition, step);
             }
         }
     }
