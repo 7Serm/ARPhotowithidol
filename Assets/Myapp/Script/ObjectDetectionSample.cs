@@ -26,6 +26,9 @@ public class ObjectDetectionSample : MonoBehaviour
 
     private Canvas _canvas;
 
+    [SerializeField]
+    private string _categoryName;
+
     private void Awake()
     {
         _canvas = FindObjectOfType<Canvas>();
@@ -70,10 +73,21 @@ public class ObjectDetectionSample : MonoBehaviour
                 break;
             }
 
-            categorizations.Sort((a, b) => b.Confidence.CompareTo(a.Confidence));
+            /*categorizations.Sort((a, b) => b.Confidence.CompareTo(a.Confidence));
             var categoryToDisplay = categorizations[0];
             _confidence = categoryToDisplay.Confidence;
             _name = categoryToDisplay.CategoryName;
+*/
+            
+            //Get name and confidence of the detected object in a given category.
+            _confidence = result[i].GetConfidence(_categoryName);
+
+            //filter out the objects with confidence less than the threshold 
+            if (_confidence < _probabilityThreshold)
+            {
+                break;
+            }
+            _name = _categoryName;
 
             int h = Mathf.FloorToInt(_canvas.GetComponent<RectTransform>().rect.height);
             int w = Mathf.FloorToInt(_canvas.GetComponent<RectTransform>().rect.width);

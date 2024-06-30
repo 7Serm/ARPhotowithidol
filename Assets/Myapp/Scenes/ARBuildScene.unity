@@ -888,9 +888,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd7af243ec4c3f4f913bc3276ca2f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _probabilityThreshold: 0.5
+  _probabilityThreshold: 0.4
   _objectDetectionManager: {fileID: 449360814}
   _drawRect: {fileID: 985359277}
+  _categoryName: door
 --- !u!4 &1491020899
 Transform:
   m_ObjectHideFlags: 0
