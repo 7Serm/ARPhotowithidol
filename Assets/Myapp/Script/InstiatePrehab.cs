@@ -13,10 +13,6 @@ public class InstiatePrehab : MonoBehaviour
     [SerializeField] GameObject _emptyobjprehab;
     [SerializeField] GameObject _motherobj;
 
-    public Text textx;
-    public Text texty;
-    public Text textz;
-
     private GameObject emptyobj;
 
     public GameObject EmptyObjPrehab
@@ -44,13 +40,5 @@ public class InstiatePrehab : MonoBehaviour
 
             }
         }
-
-        if(emptyobj != null)
-        {
-            textx.text = emptyobj.transform.position.x.ToString();
-            texty.text = emptyobj.transform.position.y.ToString();
-            textz.text = emptyobj.transform.position.z.ToString();
-        }
-        
     }
 }

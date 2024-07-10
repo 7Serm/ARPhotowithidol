@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class ModelScript : MonoBehaviour
@@ -11,12 +12,17 @@ public class ModelScript : MonoBehaviour
 
     private Camera _mainCamera;　//メインカメラの参照
     private Animator _animator;　//モデルが持つアニメーターコンポーネント用
+
+    private UIManager _uiManager;
     void Start()
     {
         GameObject gmb = GameObject.Find("Launcher");
         instiatePrehab = gmb.GetComponent<InstiatePrehab>();
         _emptyObject = instiatePrehab.EmptyObjPrehab;
         //↑モデル移動関数で使用
+
+        GameObject _canvas = GameObject.Find("Canvas");
+        _uiManager = _canvas.GetComponent<UIManager>();
 
         _mainCamera = Camera.main;
         _animator = GetComponent<Animator>();
@@ -25,8 +31,14 @@ public class ModelScript : MonoBehaviour
 
     void Update()
     {
-        MoveModel();
-       // ModelLookatCamera();
+        if (_uiManager.MoveActive)
+        {
+            MoveModel();
+        }
+        if (_uiManager.LookAtActive)
+        {
+            ModelLookatCamera();
+        }
         //UpdateAnimatorParameters();
     }
 
@@ -69,6 +81,9 @@ public class ModelScript : MonoBehaviour
     //スマホカメラの方向を常に見続ける
     private void ModelLookatCamera()
     {
+        {
+            
+        }
         if (_mainCamera != null)
         {
             Vector3 direction = _mainCamera.transform.position - transform.position;
@@ -96,4 +111,6 @@ public class ModelScript : MonoBehaviour
              
         }
     }
+
+   
 }
