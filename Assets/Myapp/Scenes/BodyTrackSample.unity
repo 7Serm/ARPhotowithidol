@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Pose2D: 1
   m_Pose3D: 1
   m_Pose3DScaleEstimation: 0
-  m_HumanBodyPrefab: {fileID: 0}
+  m_HumanBodyPrefab: {fileID: 8009698837637859200, guid: 4afe988c108fff84bba74f20c828f7fb, type: 3}
 --- !u!1 &1976630239
 GameObject:
   m_ObjectHideFlags: 0
